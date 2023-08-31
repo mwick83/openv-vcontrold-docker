@@ -10,9 +10,9 @@
 				<allow ip='127.0.0.1'/>
 			</net>
 			<logging>
-				<file>/etc/vcontrold/vcontrol.log</file>
+				<file>/config/vcontrol.log</file>
 				<syslog>n</syslog>
-				<debug>n</debug>
+				<debug>y</debug>
 			</logging>
 			<device ID="204D"/>
 		</config>
@@ -222,6 +222,7 @@
 			<enum bytes='20 98' text='V200KW2 ID=2098 Protokoll:KW'/>
 			<enum bytes='20 CB 03 4A 00 00 01 0A' text='VScotHO1 ID=20CB Protokoll:KW,300'/>
 			<enum bytes='20 94' text='V200KW1 ID=2094 Protokoll:KW'/>
+			<enum bytes='20 4D' text='CU401B_S [Vitocalxxx-S mit Vitotronic 200 (Typ WO1C) (ab 04/2012)] ID=204D Protokoll:KW,300'/>
 			<enum text='UNKNOWN'/>
 		</unit>
 

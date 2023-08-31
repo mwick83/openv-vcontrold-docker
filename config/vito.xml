@@ -7,7 +7,8 @@
     <device ID="2094" name="Dummy" protocol="KW2"/>
     <device ID="204B" name="VBC702-AW" protocol="P300"/>
     <device ID="2048" name="VBC702-BW" protocol="P300"/>
-    <device ID="204D" name="Vitotronic 200" protocol="KW2"/>
+    <!--<device ID="204D" name="Vitotronic 200" protocol="KW2"/>-->
+    <device ID="204D" name="Vitotronic 200" protocol="P300"/>
   </devices>
   <commands>
     <!-- neue Adressen -->
