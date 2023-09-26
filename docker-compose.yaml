@@ -1,21 +1,24 @@
 version: '3.1'
 services:
   vcontrold:
-    build: .
+    build:
+      context: .
+      args:
+        - BUILD_ARCH=amd64
+        - S6_OVERLAY_VERSION=3.1.5.0
+        - VCONTROLD_VERSION=master
     container_name: vcontrold
     restart: unless-stopped
     devices:
       - /dev/serial/by-id/usb-Silicon_Labs_CP2102_USB_to_UART_Bridge_Controller_0001-if00-port0:/dev/vitocal:rwm
       - /dev/bus/usb:/dev/bus/usb:rwm
     environment:
-      MQTTHOST: ${MQTTHOST}
-      MQTTPORT: ${MQTTPORT}
-      MQTTTOPIC: ${MQTTTOPIC}
-      MQTTPASSWORD: ${MQTTPASSWORD}
-      MQTTACTIVE: ${MQTTACTIVE}
-      MQTTUSER: ${MQTTUSER}
-      INTERVAL: ${INTERVAL}
-      COMMANDS: ${COMMANDS}
+      MQTT_HOST: ${MQTT_HOST}
+      MQTT_PORT: ${MQTT_PORT}
+      MQTT_TOPIC: ${MQTT_TOPIC}
+      MQTT_USER: ${MQTT_USER}
+      MQTT_PASSWORD: ${MQTT_PASSWORD}
+      REFRESH_RATE: ${REFRESH_RATE}
     volumes:
       - ./config:/config
     ports:

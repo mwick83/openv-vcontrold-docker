@@ -1,0 +1,40 @@
+#!/usr/bin/with-contenv bash
+# ==============================================================================
+# Start the example service
+# s6-overlay docs: https://github.com/just-containers/s6-overlay
+# ==============================================================================
+
+PROG=vcontrold
+exec 2>&1
+
+# Cleanup scripts
+rm -f /tmp/1_mqtt_commands.txt || /bin/true
+rm -f /tmp/2_mqtt.tmpl || /bin/true
+echo '#!/bin/sh' > /tmp/2_mqtt.tmpl
+
+# Configure scripts
+commands_array=(`cat /config/mqtt_commands.cfg | tr '|' ' '`)
+i=0
+for command in "${commands_array[@]}"
+do
+   :
+    ((i=i+1))
+    cmd=$(echo $command | cut -d':' -f1)
+    type=$(echo $command | cut -d':' -f2)
+
+    echo "$PROG: Setup command ${i}: ${cmd} with type ${type}"
+    echo $cmd >> /tmp/1_mqtt_commands.txt
+
+    R='$'$i''
+    if [[ $type == "STRING" ]]; then
+        R='"$R'$i'"'
+    fi
+
+    echo 'if [ "x$E'$i'" = "xOK" ]; then' >> /tmp/2_mqtt.tmpl
+    echo '  mosquitto_pub -h $MQTT_HOST -p $MQTT_PORT -u $MQTT_USER -P $MQTT_PASSWORD -t $MQTT_TOPIC/$C'$i' -m '$R'' >> /tmp/2_mqtt.tmpl
+    echo 'fi' >> /tmp/2_mqtt.tmpl
+done
+
+## Run your program
+#exec /usr/sbin/vcontrold -n -U root -d $config_tty
+exec /usr/sbin/vcontrold -n -U root -x /config/vcontrold.xml

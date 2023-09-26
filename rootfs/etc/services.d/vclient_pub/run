@@ -1,0 +1,14 @@
+#!/usr/bin/with-contenv bash
+# ==============================================================================
+# Start the example service
+# s6-overlay docs: https://github.com/just-containers/s6-overlay
+# ==============================================================================
+
+PROG=vclient_pub
+exec 2>&1
+
+## Run your program
+while sleep $REFRESH_RATE; do
+    vclient -h 127.0.0.1 -p 3002 -f /config/1_mqtt_commands.txt -t /config/2_mqtt.tmpl -x /config/3_mqtt_pub.sh
+    echo "$PROG: Looping vclient. Sleeping $REFRESH_RATE seconds."
+done

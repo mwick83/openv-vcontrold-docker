@@ -1,0 +1,25 @@
+#!/usr/bin/with-contenv bash
+# ==============================================================================
+# Start the example service
+# s6-overlay docs: https://github.com/just-containers/s6-overlay
+# ==============================================================================
+
+PROG=vclient_sub
+exec 2>&1
+
+## Run your program
+while true ; do
+    mosquitto_sub -v -h $MQTT_HOST -p $MQTT_PORT -u $MQTT_USER -P $MQTT_PASSWORD -t "$MQTT_TOPIC/#" -I "vcontrold_sub_" | while read -r payload
+    do
+        echo "$PROG: Received: ${payload}"
+        # Here is the callback to execute whenever you receive a message:
+        topic=$(echo $payload | cut -d' ' -f1)
+        value=$(echo $payload | cut -d' ' -f2)
+        if [[ $topic =~ "/set" ]]; then
+            command=$(echo $topic | cut -d'/' -f2)
+            echo "$PROG: Sending command: [${command}]: ${value}"
+            vclient -h 127.0.0.1 -p 3002 -o /dev/stdout -c "${command} ${value}"
+        fi
+    done
+    sleep $REFRESH_RATE
+done
