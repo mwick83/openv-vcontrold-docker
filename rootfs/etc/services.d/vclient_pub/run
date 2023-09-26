@@ -9,6 +9,6 @@ exec 2>&1
 
 ## Run your program
 while sleep $REFRESH_RATE; do
-    vclient -h 127.0.0.1 -p 3002 -f /config/1_mqtt_commands.txt -t /config/2_mqtt.tmpl -x /config/3_mqtt_pub.sh
+    vclient -h 127.0.0.1 -p 3002 -f /tmp/1_mqtt_commands.txt -t /tmp/2_mqtt.tmpl -x /tmp/3_mqtt_pub.sh
     echo "$PROG: Looping vclient. Sleeping $REFRESH_RATE seconds."
 done
