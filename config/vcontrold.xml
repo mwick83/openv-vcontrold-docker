@@ -287,7 +287,7 @@
 					<command>SEND 00 01</command>
 				</macro>
 				<macro name='SETADDR'>
-					<command>SEND 02 02</command>
+					<command>SEND 00 02</command>
 				</macro>
 			</macros>
 			<commands>
