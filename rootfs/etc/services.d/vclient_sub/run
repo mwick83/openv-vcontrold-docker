@@ -15,11 +15,9 @@ while true ; do
         # Here is the callback to execute whenever you receive a message:
         topic=$(echo $payload | cut -d' ' -f1)
         value=$(echo $payload | cut -d' ' -f2)
-        #if [[ $topic =~ "/set" ]]; then
-            command=$(echo "$topic" | sed -E 's|.+/(\w+)/set$|\1|')
-            echo "$PROG: Sending command: [set${command}]: ${value}"
-            #vclient -h 127.0.0.1 -p 3002 -o /dev/stdout -c "set${command} ${value}"
-        #fi
+        command="set$(echo "$topic" | sed -E 's|.+/(\w+)/set$|\1|')"
+        echo "$PROG: Sending command: ${command} ${value}"
+        vclient -h 127.0.0.1 -p 3002 -o /dev/stdout -c "${command} ${value}"
     done
     sleep $REFRESH_RATE
 done
