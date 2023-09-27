@@ -131,14 +131,14 @@
       <unit>UT</unit>
       <description>Ermittle die Warmwassertemperatur Unten in Grad C</description>
     </command>
-    <command name="getTempWWsoll" protocmd="getaddr">
+    <command name="getTempWWSoll" protocmd="getaddr">
       <addr>6000</addr>
       <len>2</len>
       <unit>UT</unit>
       <description>Ermittle die Warmwassersolltemperatur in Grad C</description>
     </command>
     <!-- set Befehl eingefuegt von ceteris paribus 2010 -->
-    <command name="setTempWWsoll" protocmd="setaddr">
+    <command name="setTempWWSoll" protocmd="setaddr">
       <addr>6000</addr>
       <len>2</len>
       <unit>UT</unit>
