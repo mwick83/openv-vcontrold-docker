@@ -31,7 +31,7 @@ do
     fi
 
     echo 'if [ "x$E'$i'" = "xOK" ]; then' >> /tmp/2_mqtt.tmpl
-    echo '  topic_post=`echo $C | sed "s|^get||"`'
+    echo '  topic_post=`echo $C | sed "s|^get||"`' >> /tmp/2_mqtt.tmpl
     echo '  mosquitto_pub -h $MQTT_HOST -p $MQTT_PORT -u $MQTT_USER -P $MQTT_PASSWORD -t $MQTT_TOPIC/$topic_post'$i' -m '$R'' >> /tmp/2_mqtt.tmpl
     echo 'fi' >> /tmp/2_mqtt.tmpl
 done
