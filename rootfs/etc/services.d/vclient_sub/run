@@ -16,7 +16,7 @@ while true ; do
         topic=$(echo $payload | cut -d' ' -f1)
         value=$(echo $payload | cut -d' ' -f2)
         #if [[ $topic =~ "/set" ]]; then
-            command=$(echo $topic | cut -d'/' -f2)
+            command=$(echo "$topic" | sed -E 's|.+/(\w+)/set$|\1|')
             echo "$PROG: Sending command: [set${command}]: ${value}"
             #vclient -h 127.0.0.1 -p 3002 -o /dev/stdout -c "set${command} ${value}"
         #fi
