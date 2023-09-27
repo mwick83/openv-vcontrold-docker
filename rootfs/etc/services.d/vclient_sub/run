@@ -19,5 +19,5 @@ while true ; do
         echo "$PROG: Sending command: ${command} ${value}"
         vclient -h 127.0.0.1 -p 3002 -o /dev/stdout -c "${command} ${value}"
     done
-    sleep $REFRESH_RATE
+    sleep $MQTT_SUB_SLEEP
 done

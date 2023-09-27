@@ -8,7 +8,8 @@ PROG=vclient_pub
 exec 2>&1
 
 ## Run your program
-while sleep $REFRESH_RATE; do
+while sleep $MQTT_INITIAL_PUB_SLEEP; do
     vclient -h 127.0.0.1 -p 3002 -f /tmp/1_mqtt_commands.txt -t /tmp/2_mqtt.tmpl -x /tmp/3_mqtt_pub.sh
-    echo "$PROG: Looping vclient. Sleeping $REFRESH_RATE seconds."
+    echo "$PROG: Looping vclient. Sleeping $MQTT_PUB_SLEEP seconds."
+    sleep $MQTT_PUB_SLEEP
 done

@@ -18,7 +18,9 @@ services:
       MQTT_TOPIC: ${MQTT_TOPIC}
       MQTT_USER: ${MQTT_USER}
       MQTT_PASSWORD: ${MQTT_PASSWORD}
-      REFRESH_RATE: ${REFRESH_RATE}
+      MQTT_INITIAL_PUB_SLEEP: ${MQTT_INITIAL_PUB_SLEEP}
+      MQTT_PUB_SLEEP: ${MQTT_PUB_SLEEP}
+      MQTT_SUB_SLEEP: ${MQTT_SUB_SLEEP}
     volumes:
       - ./config:/config
     ports:
