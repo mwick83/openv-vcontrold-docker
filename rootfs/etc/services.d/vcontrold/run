@@ -23,7 +23,7 @@ do
     type=$(echo $command | cut -d':' -f2)
 
     echo "$PROG: Setup command ${i}: ${cmd} with type ${type}"
-    echo $cmd >> /tmp/1_mqtt_commands.txt
+    echo "get${cmd}" >> /tmp/1_mqtt_commands.txt
 
     R='$'$i''
     if [[ $type == "STRING" ]]; then
