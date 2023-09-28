@@ -13,6 +13,7 @@ services:
       - /dev/serial/by-id/usb-Silicon_Labs_CP2102_USB_to_UART_Bridge_Controller_0001-if00-port0:/dev/vitocal:rwm
       - /dev/bus/usb:/dev/bus/usb:rwm
     environment:
+      MQTT_ACTIVE: ${MQTT_ACTIVE}
       MQTT_HOST: ${MQTT_HOST}
       MQTT_PORT: ${MQTT_PORT}
       MQTT_TOPIC: ${MQTT_TOPIC}

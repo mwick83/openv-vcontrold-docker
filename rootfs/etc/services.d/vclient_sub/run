@@ -9,15 +9,19 @@ exec 2>&1
 
 ## Run your program
 while true ; do
-    mosquitto_sub -v -h $MQTT_HOST -p $MQTT_PORT -u $MQTT_USER -P $MQTT_PASSWORD -t "$MQTT_TOPIC/+/set" -I "vcontrold_sub_" | while read -r payload
-    do
-        echo "$PROG: Received: ${payload}"
-        # Here is the callback to execute whenever you receive a message:
-        topic=$(echo $payload | cut -d' ' -f1)
-        value=$(echo $payload | cut -d' ' -f2)
-        command="set$(echo "$topic" | sed -E 's|.+/(\w+)/set$|\1|')"
-        echo "$PROG: Sending command: ${command} ${value}"
-        vclient -h 127.0.0.1 -p 3002 -o /dev/stdout -c "${command} ${value}"
-    done
+    if [[ $MQTT_ACTIVE == 1 ]]; then
+        mosquitto_sub -v -h $MQTT_HOST -p $MQTT_PORT -u $MQTT_USER -P $MQTT_PASSWORD -t "$MQTT_TOPIC/+/set" -I "vcontrold_sub_" | while read -r payload
+        do
+            echo "$PROG: Received: ${payload}"
+            # Here is the callback to execute whenever you receive a message:
+            topic=$(echo $payload | cut -d' ' -f1)
+            value=$(echo $payload | cut -d' ' -f2)
+            command="set$(echo "$topic" | sed -E 's|.+/(\w+)/set$|\1|')"
+            echo "$PROG: Sending command: ${command} ${value}"
+            vclient -h 127.0.0.1 -p 3002 -o /dev/stdout -c "${command} ${value}"
+        done
+    else
+        echo "$PROG: MQTT disabled; mosquitto_sub call skipped. Sleeping $MQTT_SUB_SLEEP seconds."
+    fi
     sleep $MQTT_SUB_SLEEP
 done
