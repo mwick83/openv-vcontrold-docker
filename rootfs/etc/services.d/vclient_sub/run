@@ -20,8 +20,9 @@ while true ; do
             echo "$PROG: Sending command: ${command} ${value}"
             vclient -h 127.0.0.1 -p 3002 -o /dev/stdout -c "${command} ${value}"
         done
+        sleep $MQTT_SUB_SLEEP
     else
         echo "$PROG: MQTT disabled; mosquitto_sub call skipped. Sleeping $MQTT_SUB_SLEEP seconds."
+        sleep $MQTT_INACTIVE_SLEEP
     fi
-    sleep $MQTT_SUB_SLEEP
 done

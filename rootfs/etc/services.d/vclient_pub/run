@@ -12,8 +12,9 @@ while sleep $MQTT_INITIAL_PUB_SLEEP; do
     if [[ $MQTT_ACTIVE == 1 ]]; then
         vclient -h 127.0.0.1 -p 3002 -f /tmp/1_mqtt_commands.txt -t /tmp/2_mqtt.tmpl -x /tmp/3_mqtt_pub.sh
         echo "$PROG: Looping vclient. Sleeping $MQTT_PUB_SLEEP seconds."
+        sleep $MQTT_PUB_SLEEP
     else
         echo "$PROG: MQTT disabled; vclient call skipped. Sleeping $MQTT_PUB_SLEEP seconds."
+        sleep $MQTT_INACTIVE_SLEEP
     fi
-    sleep $MQTT_PUB_SLEEP
 done

@@ -22,6 +22,7 @@ services:
       MQTT_INITIAL_PUB_SLEEP: ${MQTT_INITIAL_PUB_SLEEP}
       MQTT_PUB_SLEEP: ${MQTT_PUB_SLEEP}
       MQTT_SUB_SLEEP: ${MQTT_SUB_SLEEP}
+      MQTT_INACTIVE_SLEEP: ${MQTT_INACTIVE_SLEEP}
     volumes:
       - ./config:/config
     ports:
