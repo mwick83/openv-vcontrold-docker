@@ -22,7 +22,7 @@ while true ; do
         done
         sleep $MQTT_SUB_SLEEP
     else
-        echo "$PROG: MQTT disabled; mosquitto_sub call skipped. Sleeping $MQTT_SUB_SLEEP seconds."
+        echo "$PROG: MQTT disabled; mosquitto_sub call skipped. Sleeping $MQTT_INACTIVE_SLEEP seconds."
         sleep $MQTT_INACTIVE_SLEEP
     fi
 done

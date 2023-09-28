@@ -14,7 +14,7 @@ while sleep $MQTT_INITIAL_PUB_SLEEP; do
         echo "$PROG: Looping vclient. Sleeping $MQTT_PUB_SLEEP seconds."
         sleep $MQTT_PUB_SLEEP
     else
-        echo "$PROG: MQTT disabled; vclient call skipped. Sleeping $MQTT_PUB_SLEEP seconds."
+        echo "$PROG: MQTT disabled; vclient call skipped. Sleeping $MQTT_INACTIVE_SLEEP seconds."
         sleep $MQTT_INACTIVE_SLEEP
     fi
 done
