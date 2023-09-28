@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bash
 # ==============================================================================
-# Start the example service
+# Start vclient_sub service
 # s6-overlay docs: https://github.com/just-containers/s6-overlay
 # ==============================================================================
 
