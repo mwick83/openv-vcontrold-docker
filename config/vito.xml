@@ -328,15 +328,15 @@
     <!-- PARTYBETRIEB -->
     <command name="getTempRaumSollParty" protocmd="getaddr">
       <addr>2022</addr>
-      <len>1</len>
-      <unit>ST</unit>
+      <len>2</len>
+      <unit>UT</unit>
       <description>Solltemperatur Partybetrieb HK1</description>
     </command>
     <command name="setTempRaumSollParty" protocmd="setaddr">
       <addr>2022</addr>
-      <len>1</len>
-      <unit>ST</unit>
-      <description>Setze die Warmwassersolltemperatur Party M1 in Grad C
+      <len>2</len>
+      <unit>UT</unit>
+      <description>Setze die Solltemperatur Partybetrieb HK1 in Grad C
       </description>
     </command>
     <!-- STOERUNG -->
