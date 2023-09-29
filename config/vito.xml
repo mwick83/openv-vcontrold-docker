@@ -41,31 +41,25 @@
       <len>4</len>
       <unit>CO</unit>
     </command>
-    <command name="getStatusZirkPumpe" protocmd="getaddr">
-      <addr>0490</addr>
-      <len>1</len>
-      <unit>BST</unit>
-      <description>Status Zirkulationspumpe</description>
-    </command>
-    <command name="getStatusVerdichter" protocmd="getaddr">
+    <command name="getVerdichterStatus" protocmd="getaddr">
       <addr>0480</addr>
       <len>1</len>
       <unit>BST</unit>
       <description>Status Verdichter</description>
     </command>
-    <command name="getStatusVentilWW" protocmd="getaddr">
+    <command name="getVentilStatusWW" protocmd="getaddr">
       <addr>0494</addr>
       <len>1</len>
       <unit>RT</unit>
       <description>Status 3W Ventil</description>
     </command>
-    <command name="getEHeizungStufe1BS" protocmd="getaddr">
+    <command name="getEHeizungBSStufe1" protocmd="getaddr">
       <description>Ermittle die Betriebsstunden der E-Heizung Stufe 1</description>
       <addr>0588</addr>
       <len>4</len>
       <unit>CS</unit>
     </command>
-    <command name="getEHeizungStufe2BS" protocmd="getaddr">
+    <command name="getEHeizungBSStufe2" protocmd="getaddr">
       <description>Ermittle die Betriebsstunden der E-Heizung Stufe 2</description>
       <addr>0589</addr>
       <len>4</len>
@@ -88,18 +82,6 @@
       <addr>05A9</addr>
       <len>4</len>
       <unit>CS</unit>
-    </command>
-    <command name="getVorlaufTemp1" protocmd="getaddr">
-      <description>Vorlauftemperatur Prim&#xE4;rquelle</description>
-      <addr>010A</addr>
-      <len>2</len>
-      <unit>UT</unit>
-    </command>
-    <command name="getRuecklaufTemp1" protocmd="getaddr">
-      <description>R&#xFC;cklauftemperatur Prim&#xE4;rquelle</description>
-      <addr>01C4</addr>
-      <len>2</len>
-      <unit>UT</unit>
     </command>
     <command name="getEEV1" protocmd="getaddr">
       <description>Ermittle Schaltungen Verdichter</description>
@@ -239,51 +221,6 @@
       <device ID="2098"/>
     </command>
     <!-- PUMPEN -->
-    <command name="getPumpeStatusM1" protocmd="getaddr">
-      <addr>2906</addr>
-      <len>1</len>
-      <unit>RT</unit>
-      <description>Ermittle den Status der Pumpe M1</description>
-      <device ID="2053" protocmd="getpaddr">
-        <addr>01</addr>
-        <len>1</len>
-        <bit>0</bit>
-        <unit>BST</unit>
-      </device>
-      <!-- Device 20CB eingefuegt von ceteris paribus 2010 -->
-      <device ID="20CB">
-        <addr>7663</addr>
-        <len>2</len>
-        <unit>PR2</unit>
-      </device>
-    </command>
-    <command name="getPumpeStatusM2" protocmd="getaddr">
-      <addr>3906</addr>
-      <len>1</len>
-      <unit>RT</unit>
-      <description>Ermittle den Status der Pumpe M2</description>
-      <device ID="2053"/>
-      <!-- Device 20CB eingefuegt von ceteris paribus 2010 -->
-      <device ID="20CB">
-        <addr>7665</addr>
-        <len>1</len>
-        <unit>RT</unit>
-      </device>
-    </command>
-    <!-- get Befehl eingefuegt von ceteris paribus 2010 -->
-    <command name="getPumpeDrehzahlM2" protocmd="getaddr">
-      <addr>3906</addr>
-      <len>1</len>
-      <unit>RT</unit>
-      <description>Ermittle die Drehzahl der Pumpe M2</description>
-      <device ID="2053"/>
-      <!-- Device 20CB eingefuegt von ceteris paribus 2010 -->
-      <device ID="20CB">
-        <addr>7665</addr>
-        <len>2</len>
-        <unit>PR2</unit>
-      </device>
-    </command>
     <command name="getLZSNH" protocmd="getaddr">
       <description>Ermittle die Betriebsstunden der WP</description>
       <addr>058A</addr>
@@ -308,40 +245,23 @@
       <len>4</len>
       <unit>CS</unit>
     </command>
-    <!-- get Befehl eingefuegt von ceteris paribus 2010 -->
-    <command name="getPumpeStatusIntern" protocmd="getaddr">
-      <description>Ermittle den Status der Internen Pumpe</description>
-      <device ID="20CB">
-        <addr>7660</addr>
-        <len>1</len>
-        <unit>RT</unit>
-      </device>
-    </command>
-    <!-- get Befehl eingefuegt von ceteris paribus 2010 -->
-    <command name="getPumpeDrehzahlIntern" protocmd="getaddr">
-      <addr>3906</addr>
+    <command name="getPumpeStatusPrimaer" protocmd="getaddr">
+      <addr>0483</addr>
       <len>1</len>
       <unit>RT</unit>
-      <description>Ermittle die Drehzahl der Internen Pumpe</description>
-      <device ID="2053"/>
-      <device ID="20CB">
-        <addr>7660</addr>
-        <len>2</len>
-        <unit>PR2</unit>
-      </device>
+      <description>Ermittle den Status der Pumpe Primaerquelle 2 (Primaerpumpe) (0..1)</description>
     </command>
-    <command name="getPumpeStatusSp" protocmd="getaddr">
+    <command name="getPumpeStatusSekundaer1" protocmd="getaddr">
+      <addr>0484</addr>
+      <len>1</len>
+      <unit>RT</unit>
+      <description>Ermittle den Status der Sekundaerpumpe 1 (0..1)</description>
+    </command>
+    <command name="getPumpeStatusSpeicher" protocmd="getaddr">
       <addr>0845</addr>
       <len>1</len>
       <unit>RT</unit>
-      <description>Ermittle den Status der Speicherladepumpe</description>
-      <device ID="2053"/>
-      <!-- Device 20CB eingefuegt von ceteris paribus 2010 -->
-      <device ID="20CB">
-        <addr>6513</addr>
-        <len>1</len>
-        <unit>RT</unit>
-      </device>
+      <description>Ermittle den Status der Speicherladepumpe (Sekundaerpumpe 2)</description>
     </command>
     <command name="getPumpeStatusHK1" protocmd="getaddr">
       <addr>048D</addr>
@@ -350,32 +270,23 @@
       <description>Ermittle den Status der Heizkreispumpe HK1</description>
     </command>
     <command name="getPumpeStatusZirku" protocmd="getaddr">
-      <addr>0846</addr>
+      <addr>0490</addr>
       <len>1</len>
       <unit>RT</unit>
       <description>Ermittle den Status der Zirkulationspumpe</description>
-      <device ID="2053" protocmd="getpaddr">
-        <addr>01</addr>
-        <len>1</len>
-        <bit>2</bit>
-        <unit>BST</unit>
-      </device>
-      <!-- Device 20CB eingefuegt von ceteris paribus 2010 -->
-      <device ID="20CB">
-        <addr>6515</addr>
-        <len>1</len>
-        <unit>RT</unit>
-      </device>
     </command>
-    <!-- get Befehl eingefuegt von ceteris paribus 2010 -->
-    <command name="getTempSTSSOL" protocmd="getaddr">
-      <addr>081A</addr>
-      <len>2</len>
-      <unit>UT</unit>
-      <description>Ermittle die Speichertemperatur in Grad C
-				(NRF_TiefpassTemperaturwert_STSSOL)</description>
-      <device ID="2053"/>
-      <device ID="2098"/>
+    <!-- E-HEIZUNG -->
+    <command name="getEHeizungStatusStufe1" protocmd="getaddr">
+      <addr>0488</addr>
+      <len>1</len>
+      <unit>RT</unit>
+      <description>Ermittle den Status der E-Heizung Stufe 1</description>
+    </command>
+    <command name="getEHeizungStatusStufe2" protocmd="getaddr">
+      <addr>0489</addr>
+      <len>1</len>
+      <unit>RT</unit>
+      <description>Ermittle den Status der E-Heizung Stufe 2</description>
     </command>
     <!-- BETRIEBSARTEN -->
     <command name="getBetriebArtHK1" protocmd="getaddr">
@@ -414,77 +325,19 @@
       <unit>CO</unit>
       <description>Jahresarbeitszahl</description>
     </command>
-    <!-- SPARBETRIEB (SPARSCHWEIN) -->
-    <command name="getBetriebSparM1" protocmd="getaddr">
-      <addr>2302</addr>
-      <len>1</len>
-      <unit>RT</unit>
-      <description>Betriebsart Spar M1</description>
-      <device ID="2053"/>
-    </command>
-    <command name="getBetriebSparM2" protocmd="getaddr">
-      <addr>3302</addr>
-      <len>1</len>
-      <unit>RT</unit>
-      <description>Betriebsart Spar M2</description>
-      <device ID="2053"/>
-    </command>
     <!-- PARTYBETRIEB -->
-    <command name="getBetriebPartyM1" protocmd="getaddr">
-      <addr>2303</addr>
-      <len>1</len>
-      <unit>RT</unit>
-      <description>Betriebsart Party HK1</description>
-      <device ID="2053"/>
-    </command>
-    <command name="getBetriebPartyM2" protocmd="getaddr">
-      <addr>3303</addr>
-      <len>1</len>
-      <unit>RT</unit>
-      <description>Betriebsart Party HK2</description>
-      <device ID="2053"/>
-    </command>
-    <command name="getTempPartyHK1" protocmd="getaddr">
+    <command name="getTempRaumSollParty" protocmd="getaddr">
       <addr>2022</addr>
       <len>1</len>
       <unit>ST</unit>
       <description>Solltemperatur Partybetrieb HK1</description>
-      <device ID="2053"/>
     </command>
-    <command name="setTempPartyHK1" protocmd="setaddr">
+    <command name="setTempRaumSollParty" protocmd="setaddr">
       <addr>2022</addr>
       <len>1</len>
       <unit>ST</unit>
       <description>Setze die Warmwassersolltemperatur Party M1 in Grad C
       </description>
-      <device ID="2053"/>
-    </command>
-    <command name="getTempPartyHK2" protocmd="getaddr">
-      <addr>3022</addr>
-      <len>1</len>
-      <unit>ST</unit>
-      <description>Solltemperatur Partybetrieb HK2</description>
-    </command>
-    <command name="setTempPartyHK2" protocmd="setaddr">
-      <addr>3022</addr>
-      <len>1</len>
-      <unit>ST</unit>
-      <description>Setze die Warmwassersolltemperatur Party HK2 in Grad C
-      </description>
-    </command>
-    <command name="setBetriebPartyM1" protocmd="setaddr">
-      <addr>2303</addr>
-      <len>1</len>
-      <unit>RT</unit>
-      <description>Setze Betriebsart Party M1</description>
-      <device ID="2053"/>
-    </command>
-    <command name="setBetriebPartyM2" protocmd="setaddr">
-      <addr>3303</addr>
-      <len>1</len>
-      <unit>RT</unit>
-      <description>Setze Betriebsart Party M2</description>
-      <device ID="2053"/>
     </command>
     <!-- STOERUNG -->
     <command name="getStatusStoerung" protocmd="getaddr">
@@ -492,12 +345,6 @@
       <len>1</len>
       <unit>RT</unit>
       <description>Status Sammelstoerung</description>
-      <device ID="2053"/>
-      <device ID="20CB">
-        <addr>0A82</addr>
-        <len>1</len>
-        <unit>RT</unit>
-      </device>
     </command>
     <!-- SYSTEMZEIT -->
     <command name="getSystemTime" protocmd="getaddr">

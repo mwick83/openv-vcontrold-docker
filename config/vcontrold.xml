@@ -117,6 +117,7 @@
 			<type>enum</type>
 			<enum bytes='00' text='0'/>
 			<enum bytes='01' text='1'/>
+			<enum bytes='02' text='2'/>
 			<enum text='NOT OK'/>
 		</unit>
 		<unit name='WWBereitung'>
