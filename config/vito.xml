@@ -301,12 +301,6 @@
       <unit>BA</unit>
       <description>Setze Betriebsart HK1</description>
     </command>
-    <command name="getBetriebArt" protocmd="getaddr">
-      <addr>2301</addr>
-      <len>1</len>
-      <unit>BA</unit>
-      <description>Betriebsart</description>
-    </command>
     <command name="getJAZ" protocmd="getaddr">
       <addr>1680</addr>
       <len>2</len>
