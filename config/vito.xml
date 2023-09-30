@@ -1,93 +1,51 @@
 <?xml version="1.0"?>
 <vito>
   <devices>
-    <device ID="2053" name="Dummy" protocol="GWG"/>
-    <device ID="20CB" name="Dummy" protocol="P300"/>
-    <device ID="2098" name="Dummy" protocol="KW2"/>
-    <device ID="2094" name="Dummy" protocol="KW2"/>
-    <device ID="204B" name="VBC702-AW" protocol="P300"/>
-    <device ID="2048" name="VBC702-BW" protocol="P300"/>
     <!--<device ID="204D" name="Vitotronic 200" protocol="KW2"/>-->
     <device ID="204D" name="Vitotronic 200" protocol="P300"/>
   </devices>
   <commands>
-    <command name="getStatusQuellePri1" protocmd="getaddr">
-      <description>Ermittle Schaltungen Sekundärquelle</description>
-      <addr>0482</addr>
-      <len>1</len>
-      <unit>RT</unit>
-    </command>
-    <command name="getAnzQuelleSek" protocmd="getaddr">
-      <description>Ermittle Schaltungen Sekundärquelle</description>
+    <command name="getSZQuelleSek" protocmd="getaddr">
+      <description>Ermittle Schaltzyklen Sekundärquelle</description>
       <addr>0504</addr>
       <len>4</len>
       <unit>CO</unit>
     </command>
-    <command name="getAnzHeizstabSt1" protocmd="getaddr">
-      <description>Ermittle Schaltungen Heizstab Stufe 1</description>
-      <addr>0508</addr>
-      <len>4</len>
-      <unit>CO</unit>
-    </command>
-    <command name="getAnzHeizstabSt2" protocmd="getaddr">
-      <description>Ermittle Schaltungen Heizstab Stufe 2</description>
-      <addr>0509</addr>
-      <len>4</len>
-      <unit>CO</unit>
-    </command>
-    <command name="getAnzHK" protocmd="getaddr">
-      <description>Ermittle Schaltungen Heizkreis</description>
+    <command name="getSZHK" protocmd="getaddr">
+      <description>Ermittle Schaltzyklen Heizkreis</description>
       <addr>050D</addr>
       <len>4</len>
       <unit>CO</unit>
     </command>
-    <command name="getVerdichterStatus" protocmd="getaddr">
+    <command name="getStatusVerdichter" protocmd="getaddr">
       <addr>0480</addr>
       <len>1</len>
       <unit>BST</unit>
       <description>Status Verdichter</description>
     </command>
-    <command name="getVentilStatusWW" protocmd="getaddr">
+    <command name="getStatusQuellePrimaer1" protocmd="getaddr">
+      <description>Status Primaerquelle 1</description>
+      <addr>0482</addr>
+      <len>1</len>
+      <unit>RT</unit>
+    </command>
+    <command name="getStatusVentilWW" protocmd="getaddr">
       <addr>0494</addr>
       <len>1</len>
       <unit>RT</unit>
       <description>Status 3W Ventil</description>
     </command>
-    <command name="getEHeizungBSStufe1" protocmd="getaddr">
-      <description>Ermittle die Betriebsstunden der E-Heizung Stufe 1</description>
-      <addr>0588</addr>
-      <len>4</len>
-      <unit>CS</unit>
-    </command>
-    <command name="getEHeizungBSStufe2" protocmd="getaddr">
-      <description>Ermittle die Betriebsstunden der E-Heizung Stufe 2</description>
-      <addr>0589</addr>
-      <len>4</len>
-      <unit>CS</unit>
-    </command>
-    <command name="getHK1PumpeBS" protocmd="getaddr">
-      <description>Ermittle die Betriebsstunden der HK1 Pumpe</description>
-      <addr>058D</addr>
-      <len>4</len>
-      <unit>CS</unit>
-    </command>
-    <command name="getVerdichter1BS" protocmd="getaddr">
+    <command name="getBSVerdichter1" protocmd="getaddr">
       <description>Ermittle die Betriebsstunden von Verdichter 1</description>
       <addr>05A8</addr>
       <len>4</len>
       <unit>CS</unit>
     </command>
-    <command name="getVerdichter2BS" protocmd="getaddr">
+    <command name="getBSVerdichter2" protocmd="getaddr">
       <description>Ermittle die Betriebsstunden von Verdichter 2</description>
       <addr>05A9</addr>
       <len>4</len>
       <unit>CS</unit>
-    </command>
-    <command name="getEEV1" protocmd="getaddr">
-      <description>Ermittle Schaltungen Verdichter</description>
-      <addr>0529</addr>
-      <len>4</len>
-      <unit>CO</unit>
     </command>
     <command name="getTempA" protocmd="getaddr">
       <addr>0101</addr>
@@ -127,27 +85,6 @@
       <len>1</len>
       <unit>WW</unit>
       <description>Setze einmalige Warmwasser Aufbereitung Temp2</description>
-    </command>
-    <!-- get Befehl eingefuegt von ceteris paribus 2010 Was ist die WW-Auslauftemperatur -->
-    <command name="getTempStp2" protocmd="getaddr">
-      <addr>0814</addr>
-      <len>2</len>
-      <unit>UT</unit>
-      <description>Ermittle die WW Auslauftemperatur in Grad C (Tiefpass)</description>
-    </command>
-    <!-- get Befehl eingefuegt von ceteris paribus 25.08.2011 -->
-    <command name="getWWUWPNachlauf" protocmd="getaddr">
-      <addr>6762</addr>
-      <len>2</len>
-      <unit>CO</unit>
-      <description>Ermittle Warmwasserpumpennachlauf </description>
-    </command>
-    <!-- set Befehl eingefuegt von ceteris paribus 25.08.2011 -->
-    <command name="setWWUWPNachlauf" protocmd="setaddr">
-      <addr>6762</addr>
-      <len>2</len>
-      <unit>CO</unit>
-      <description>Setze Warmwasserpumpennachlauf</description>
     </command>
     <!-- HEIZKREISE -->
     <command name="getTempRaumSollNormal" protocmd="getaddr">
@@ -204,89 +141,91 @@
       <unit>UT</unit>
       <description>Ermittle die Vorlaufsolltemperatur HK1 in Grad C</description>
     </command>
-    <!-- SPEICHER1 -->
-    <command name="getTempSpu" protocmd="getaddr">
-      <addr>6566</addr>
-      <len>2</len>
-      <unit>UT</unit>
-      <description>Ermittle die Speichertemperatur unten in Grad C</description>
-      <device ID="2053"/>
-    </command>
-    <command name="getTempStp" protocmd="getaddr">
-      <addr>0812</addr>
-      <len>2</len>
-      <unit>UT</unit>
-      <description>Ermittle die Speichertemperatur in Grad C (Tiefpass)</description>
-      <device ID="2053"/>
-      <device ID="2098"/>
-    </command>
     <!-- PUMPEN -->
-    <command name="getLZSNH" protocmd="getaddr">
-      <description>Ermittle die Betriebsstunden der WP</description>
+    <command name="getBSSNH" protocmd="getaddr">
+      <description>Ermittle die Betriebsstunden Speichernachheizung</description>
       <addr>058A</addr>
       <len>4</len>
       <unit>CS</unit>
     </command>
-    <command name="getLZAC" protocmd="getaddr">
-      <description>Ermittle die Betriebsstunden der WP</description>
+    <command name="getBSAC" protocmd="getaddr">
+      <description>Ermittle die Betriebsstunden Active Cooling</description>
       <addr>058C</addr>
       <len>4</len>
       <unit>CS</unit>
     </command>
-    <command name="getLZPumpe" protocmd="getaddr">
-      <description>Ermittle die Betriebsstunden der WP</description>
+    <command name="getBSPumpeHK1" protocmd="getaddr">
+      <description>Ermittle die Betriebsstunden der HK1 Pumpe</description>
       <addr>058D</addr>
       <len>4</len>
       <unit>CS</unit>
-    </command>
-    <command name="getLZWP" protocmd="getaddr">
-      <description>Ermittle die Betriebsstunden der WP</description>
-      <addr>5005</addr>
-      <len>4</len>
-      <unit>CS</unit>
-    </command>
-    <command name="getPumpeStatusPrimaer" protocmd="getaddr">
+    <command name="getStatusPumpePrimaer" protocmd="getaddr">
       <addr>0483</addr>
       <len>1</len>
       <unit>RT</unit>
       <description>Ermittle den Status der Pumpe Primaerquelle 2 (Primaerpumpe) (0..1)</description>
     </command>
-    <command name="getPumpeStatusSekundaer1" protocmd="getaddr">
+    <command name="getStatusPumpeSekundaer1" protocmd="getaddr">
       <addr>0484</addr>
       <len>1</len>
       <unit>RT</unit>
       <description>Ermittle den Status der Sekundaerpumpe 1 (0..1)</description>
     </command>
-    <command name="getPumpeStatusSpeicher" protocmd="getaddr">
+    <command name="getStatusPumpeSpeicher" protocmd="getaddr">
       <addr>0845</addr>
       <len>1</len>
       <unit>RT</unit>
       <description>Ermittle den Status der Speicherladepumpe (Sekundaerpumpe 2)</description>
     </command>
-    <command name="getPumpeStatusHK1" protocmd="getaddr">
+    <command name="getStatusPumpeHK1" protocmd="getaddr">
       <addr>048D</addr>
       <len>1</len>
       <unit>RT</unit>
       <description>Ermittle den Status der Heizkreispumpe HK1</description>
     </command>
-    <command name="getPumpeStatusZirku" protocmd="getaddr">
+    <command name="getStatusPumpeZirku" protocmd="getaddr">
       <addr>0490</addr>
       <len>1</len>
       <unit>RT</unit>
       <description>Ermittle den Status der Zirkulationspumpe</description>
     </command>
+    </command>
     <!-- E-HEIZUNG -->
-    <command name="getEHeizungStatusStufe1" protocmd="getaddr">
+    <command name="getStatusEHeizungStufe1" protocmd="getaddr">
       <addr>0488</addr>
       <len>1</len>
       <unit>RT</unit>
       <description>Ermittle den Status der E-Heizung Stufe 1</description>
     </command>
-    <command name="getEHeizungStatusStufe2" protocmd="getaddr">
+    <command name="getStatusEHeizungStufe2" protocmd="getaddr">
       <addr>0489</addr>
       <len>1</len>
       <unit>RT</unit>
       <description>Ermittle den Status der E-Heizung Stufe 2</description>
+    </command>
+    <command name="getBSEHeizungStufe1" protocmd="getaddr">
+      <description>Ermittle die Betriebsstunden der E-Heizung Stufe 1</description>
+      <addr>0588</addr>
+      <len>4</len>
+      <unit>CS</unit>
+    </command>
+    <command name="getBSEHeizungStufe2" protocmd="getaddr">
+      <description>Ermittle die Betriebsstunden der E-Heizung Stufe 2</description>
+      <addr>0589</addr>
+      <len>4</len>
+      <unit>CS</unit>
+    </command>
+    <command name="getSZEHeizungStufe1" protocmd="getaddr">
+      <description>Ermittle Schaltzyklen E-Heizung Stufe 1</description>
+      <addr>0508</addr>
+      <len>4</len>
+      <unit>CO</unit>
+    </command>
+    <command name="getSZEHeizungStufe2" protocmd="getaddr">
+      <description>Ermittle Schaltzyklen E-Heizung Stufe 2</description>
+      <addr>0509</addr>
+      <len>4</len>
+      <unit>CO</unit>
     </command>
     <!-- BETRIEBSARTEN -->
     <command name="getBetriebArtHK1" protocmd="getaddr">
@@ -375,55 +314,6 @@
       <!-- K00_KonfiAnlagenschemaGWG_W (00) Heizkreis-Warmwasserschema Adresse 
 				7700 1 A1 | 1 2 A1 + WW | 2 3 M2 | 3 4 M2 + WW | 4 5 A1 + M2 | 5 6 A1 + M2 
 				+ WW | 6 -->
-    </command>
-    <command name="getPumpeSollM1" protocmd="getaddr">
-      <description>Ermittle Solldrehzahl Pumpe M1</description>
-      <device ID="2053">
-        <addr>B0</addr>
-        <len>1</len>
-        <unit>PR1</unit>
-      </device>
-    </command>
-    <command name="getVentilStatus" protocmd="getpaddr">
-      <description>Ermittle Zustand Umschaltventil WW/Heizen</description>
-      <device ID="2053">
-        <addr>01</addr>
-        <len>1</len>
-        <bit>1</bit>
-        <unit>BST</unit>
-      </device>
-    </command>
-    <!-- Befehl 'getVentilStatus' sprechend analog Viessmann geaendert und 
-			ergaenzt von ceteris paribus 2010 -->
-    <command name="getUmschaltventil" protocmd="getaddr">
-      <addr>0A10</addr>
-      <len>1</len>
-      <unit>USV</unit>
-      <description>Ermittle den Status des Umschaltventils WW/Heizen
-      </description>
-      <device ID="2098"/>
-      <device ID="2053">
-        <addr>01</addr>
-        <len>1</len>
-        <bit>1</bit>
-        <unit>BST</unit>
-      </device>
-    </command>
-    <!-- Befehl 'setVentilStatus' sprechend analog Viessmann geaendert und 
-			ergaenzt von ceteris paribus 2012 -->
-    <command name="setUmschaltventil" protocmd="setaddr">
-      <addr>0A10</addr>
-      <len>1</len>
-      <unit>USV</unit>
-      <description>Setze den Status des Umschaltventils WW/Heizen
-      </description>
-      <device ID="2098"/>
-      <device ID="2053">
-        <addr>01</addr>
-        <len>1</len>
-        <bit>1</bit>
-        <unit>BST</unit>
-      </device>
     </command>
   </commands>
 </vito>
