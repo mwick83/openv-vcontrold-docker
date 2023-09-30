@@ -159,6 +159,7 @@
       <addr>058D</addr>
       <len>4</len>
       <unit>CS</unit>
+    </command>
     <command name="getStatusPumpePrimaer" protocmd="getaddr">
       <addr>0483</addr>
       <len>1</len>
@@ -188,7 +189,6 @@
       <len>1</len>
       <unit>RT</unit>
       <description>Ermittle den Status der Zirkulationspumpe</description>
-    </command>
     </command>
     <!-- E-HEIZUNG -->
     <command name="getStatusEHeizungStufe1" protocmd="getaddr">
