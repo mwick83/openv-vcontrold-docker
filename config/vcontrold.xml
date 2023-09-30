@@ -66,6 +66,12 @@
 			<type>int</type>
 			<entity></entity>
 		</unit>
+		<unit name="Jahresarbeitszahl">
+			<abbrev>JAZ</abbrev>
+			<calc get="V/10" set="V/10"/>
+			<type>int</type>
+			<entity></entity>
+		</unit>
 		<unit name='Volumenstrom'>
 			<abbrev>VS</abbrev>
 			<calc get='V' set='V'/>

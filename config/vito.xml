@@ -242,20 +242,20 @@
     </command>
     <command name="getJAZ" protocmd="getaddr">
       <addr>1680</addr>
-      <len>2</len>
-      <unit>CO</unit>
+      <len>1</len>
+      <unit>JAZ</unit>
       <description>Jahresarbeitszahl</description>
     </command>
     <command name="getJAZHeiz" protocmd="getaddr">
       <addr>1681</addr>
-      <len>2</len>
-      <unit>CO</unit>
+      <len>1</len>
+      <unit>JAZ</unit>
       <description>Jahresarbeitszahl</description>
     </command>
     <command name="getJAZWW" protocmd="getaddr">
       <addr>1682</addr>
-      <len>2</len>
-      <unit>CO</unit>
+      <len>1</len>
+      <unit>JAZ</unit>
       <description>Jahresarbeitszahl</description>
     </command>
     <!-- PARTYBETRIEB -->
