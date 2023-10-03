@@ -26,7 +26,7 @@ while true ; do
             rm -f /tmp/5_mqtt.tmpl || /bin/true
             rm -f /tmp/mqtt_commands_min.cfg || /bin/true
             echo '#!/bin/sh' > /tmp/5_mqtt.tmpl
-            cat /config/mqtt_commands.cfg | grep $topic > /tmp/mqtt_commands_min.cfg
+            cat /config/mqtt_commands.cfg | grep "${topic}" > /tmp/mqtt_commands_min.cfg
             commands_array=(`cat /tmp/mqtt_commands_min.cfg | tr '|' ' '`)
             echo "commands_array = $commands_array"
             i=0
