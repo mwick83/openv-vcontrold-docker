@@ -67,8 +67,7 @@
       <unit>UT</unit>
       <description>Ermittle die Warmwassersolltemperatur in Grad C</description>
     </command>
-    <!-- set Befehl eingefuegt von ceteris paribus 2010 -->
-    <command name="setTempWWSoll" protocmd="setaddr">
+    <command name="setTempWWSoll" protocmd="setaddr"> <!-- found in DP_CU401B_S.txt -->
       <addr>6000</addr>
       <len>2</len>
       <unit>UT</unit>
@@ -93,19 +92,19 @@
         <unit>UT</unit>
         <description>Ermittle Raumsolltemperatur normal HK1 (10..30)</description>
     </command>
-    <command name="getTempRaumSollRed" protocmd="getaddr">
-        <addr>2001</addr>
-        <len>2</len>
-        <unit>UT</unit>
-        <description>Ermittle Raumsolltemperatur reduzierter Betrieb HK1 (10..30)</description>
-    </command>
-    <command name="setTempRaumSollNormal" protocmd="getaddr">
+    <command name="setTempRaumSollNormal" protocmd="setaddr"> <!-- found in DP_CU401B_S.txt -->
         <addr>2000</addr>
         <len>2</len>
         <unit>UT</unit>
         <description>Setze Raumsolltemperatur normal HK1 (10..30)</description>
     </command>
-    <command name="setTempRaumSollRed" protocmd="getaddr">
+    <command name="getTempRaumSollRed" protocmd="getaddr"> <!-- found in DP_CU401B_S.txt -->
+        <addr>2001</addr>
+        <len>2</len>
+        <unit>UT</unit>
+        <description>Ermittle Raumsolltemperatur reduzierter Betrieb HK1 (10..30)</description>
+    </command>
+    <command name="setTempRaumSollRed" protocmd="setaddr"> <!-- found in DP_CU401B_S.txt -->
         <addr>2001</addr>
         <len>2</len>
         <unit>UT</unit>
