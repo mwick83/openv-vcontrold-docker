@@ -24,9 +24,8 @@ while true ; do
             echo "$PROG: Preparing minimal scripts for immediate update."
             rm -f /tmp/4_mqtt_commands.txt || /bin/true
             rm -f /tmp/5_mqtt.tmpl || /bin/true
-            rm -f /tmp/mqtt_commands_min.cfg || /bin/true
             echo '#!/bin/sh' > /tmp/5_mqtt.tmpl
-            commands_array=(`grep "${topic}" /config/mqtt_commands.cfg | tr '|' ' '`)
+            commands_array=($(grep "${topic}" /config/mqtt_commands.cfg | tr '|' ' '))
             echo "commands_array = $commands_array"
             i=0
             for command in "${commands_array[@]}"
