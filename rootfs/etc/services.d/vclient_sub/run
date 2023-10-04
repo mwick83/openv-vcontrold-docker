@@ -20,37 +20,11 @@ while true ; do
             echo "$PROG: Sending command: ${command} ${value}"
             vclient -h 127.0.0.1 -p 3002 -o /dev/stdout -c "${command} ${value}"
 
-            # Configure minimal scripts to update the set value
-            echo "$PROG: Preparing minimal scripts for immediate update."
-            rm -f /tmp/4_mqtt_commands.txt || /bin/true
-            rm -f /tmp/5_mqtt.tmpl || /bin/true
-            echo '#!/bin/sh' > /tmp/5_mqtt.tmpl
-            commands_array=($(grep "${topic}" /config/mqtt_commands.cfg | tr '|' ' '))
-            echo "commands_array = $commands_array"
-            i=0
-            for command in "${commands_array[@]}"
-            do
-               :
-                ((i=i+1))
-                cmd=$(echo $command | cut -d':' -f1)
-                type=$(echo $command | cut -d':' -f2)
-
-                echo "$PROG: Setup command ${i}: ${cmd} with type ${type}"
-                echo "get${cmd}" >> /tmp/4_mqtt_commands.txt
-
-                R='$'$i''
-                if [[ $type == "STRING" ]]; then
-                    R='"$R'$i'"'
-                fi
-
-                echo 'if [ "x$E'$i'" = "xOK" ]; then' >> /tmp/5_mqtt.tmpl
-                echo '  topic_post=`echo $C'$i' | sed "s|^get||"`' >> /tmp/5_mqtt.tmpl
-                echo '  mosquitto_pub -h $MQTT_HOST -p $MQTT_PORT -u $MQTT_USER -P $MQTT_PASSWORD -t $MQTT_TOPIC/$topic_post -q 2 -r -m '$R'' >> /tmp/5_mqtt.tmpl
-                echo 'fi' >> /tmp/5_mqtt.tmpl
-            done
-            # and execute
-            vclient -h 127.0.0.1 -p 3002 -f /tmp/4_mqtt_commands.txt -t /tmp/5_mqtt.tmpl -x /tmp/6_mqtt_pub.sh
-
+            res=$(vclient -h 127.0.0.1 -p 3002 -o /dev/stdout -c get$topic -m)
+            updval=$(echo $res | cut -d ' ' -f2)
+            echo "res: $res"
+            echo "updval: $updval"
+            mosquitto_pub -h $MQTT_HOST -p $MQTT_PORT -u $MQTT_USER -P $MQTT_PASSWORD -t $MQTT_TOPIC/$topic -q 2 -r -m "$updval"
         done
         sleep $MQTT_SUB_SLEEP
     else
