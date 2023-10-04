@@ -20,11 +20,12 @@ while true ; do
             echo "$PROG: Sending command: ${command} ${value}"
             vclient -h 127.0.0.1 -p 3002 -o /dev/stdout -c "${command} ${value}"
 
-            res=$(vclient -h 127.0.0.1 -p 3002 -o /dev/stdout -c get$topic -m)
-            updval=$(echo $res | cut -d ' ' -f2)
+            updtopic="$(echo "$topic" | sed -E 's|.+/(\w+)/set$|\1|')"
+            updres=$(vclient -h 127.0.0.1 -p 3002 -o /dev/stdout -c get$updtopic -m)
+            updval=$(echo $updres | cut -d ' ' -f2)
             echo "res: $res"
             echo "updval: $updval"
-            mosquitto_pub -h $MQTT_HOST -p $MQTT_PORT -u $MQTT_USER -P $MQTT_PASSWORD -t $MQTT_TOPIC/$topic -q 2 -r -m "$updval"
+            mosquitto_pub -h $MQTT_HOST -p $MQTT_PORT -u $MQTT_USER -P $MQTT_PASSWORD -t $MQTT_TOPIC/$updtopic -q 2 -r -m "$updval"
         done
         sleep $MQTT_SUB_SLEEP
     else
