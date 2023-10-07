@@ -255,12 +255,6 @@
       </description>
     </command>
     <!-- STOERUNG -->
-    <command name="getStatusStoerung" protocmd="getaddr">
-      <addr>7579</addr>
-      <len>1</len>
-      <unit>RT</unit>
-      <description>Status Sammelstoerung</description>
-    </command>
     <!-- SYSTEMZEIT -->
     <command name="getSystemTime" protocmd="getaddr">
       <addr>08E0</addr>
