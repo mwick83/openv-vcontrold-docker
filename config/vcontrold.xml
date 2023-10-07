@@ -12,7 +12,7 @@
 			<logging>
 				<file>/config/vcontrol.log</file>
 				<syslog>n</syslog>
-				<debug>y</debug>
+				<debug>n</debug>
 			</logging>
 			<device ID="204D"/>
 		</config>
