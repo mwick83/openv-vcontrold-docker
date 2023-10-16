@@ -112,7 +112,7 @@
 			<abbrev>CS</abbrev>
 			<calc get='V/3600' set='V*3600'/>
 			<type>uint</type>
-			<entity>Stunden</entity>
+			<entity></entity>
 		</unit>
 		<unit name='CycleTime'>
 			<abbrev>CT</abbrev>
