@@ -108,7 +108,7 @@
     <command name="getStatusVerdichter" protocmd="getaddr">
       <addr>0480</addr>
       <len>1</len>
-      <unit>BST</unit>
+      <unit>RT</unit>
       <description>Ermittle den Status des Verdichters</description>
     </command>
     <command name="getSZVerdichter" protocmd="getaddr">
@@ -126,7 +126,7 @@
     <command name="getStatusEEV1Verdichter" protocmd="getaddr">
       <addr>04A8</addr>
       <len>1</len>
-      <unit>BST</unit>
+      <unit>RT</unit>
       <description>Ermittle den Status des EEV1 Verdichters</description>
     </command>
     <command name="getSZEEV1Verdichter" protocmd="getaddr">
